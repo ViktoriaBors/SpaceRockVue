@@ -1,30 +1,23 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+<div>
+<TopNavbar></TopNavbar>
+<HeroSection></HeroSection>
+<router-view/>
+<BottomFooter></BottomFooter>
+<Impressum></Impressum>
+</div>
+
 </template>
 
+<script setup>
+import TopNavbar from './components/TopNavbar.vue'
+import HeroSection from './components/HeroSection.vue'
+import BottomFooter from './components/BottomFooter.vue'
+import Impressum from './components/Impressum.vue'
+
+</script>
+
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
 
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
