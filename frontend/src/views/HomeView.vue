@@ -1,5 +1,7 @@
 <template>
 <div>
+<TopNavbar></TopNavbar>
+<HeroSection :imgSource="imgSource"></HeroSection>
   <main class="text-justify">
     <div class="container mx-auto px-6 py-4 bg-slate-200 ">
       <p class="py-2">The main aim of the organization is to provide access to analogue and simulant materials for
@@ -20,9 +22,17 @@
       </ul>
     </div>
   </main>
+<BottomFooter></BottomFooter>
+<Impressum></Impressum>
 </div>
 </template>
 
 <script setup>
+import TopNavbar from '../components/TopNavbar.vue'
+import HeroSection from '../components/HeroSection.vue'
+import BottomFooter from '../components/BottomFooter.vue'
+import Impressum from '../components/Impressum.vue'
+
+let imgSource = "(img/logo2-removebg-preview.png)"
 
 </script>
