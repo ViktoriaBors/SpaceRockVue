@@ -4,32 +4,44 @@ import SampleView from '../views/SampleView.vue'
 import FacilityView from '../views/FacilityView.vue'
 import DatabaseView from '../views/DatabaseView.vue'
 import LoginView from '../views/LoginView.vue'
+import DashboardView from '../views/DashboardView.vue'
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: HomeView,
+    props: true
   },
   {
     path: '/sample',
     name: 'sample',
-    component: SampleView
+    component: SampleView,
+    props: true
   },
   {
     path: '/facility',
     name: 'facility',
-    component: FacilityView
+    component: FacilityView,
+    props: true
   },
   {
     path: '/database',
     name: 'database',
-    component: DatabaseView
+    component: DatabaseView,
+    props: true
   },
   {
     path: '/login',
     name: 'login',
-    component: LoginView
+    component: LoginView,
+    props: true
+  },
+  {
+    path: '/dashboard',
+    name: 'dashboard',
+    component: DashboardView,
+    props: true
   },
 ]
 
