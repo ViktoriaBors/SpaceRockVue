@@ -1,6 +1,5 @@
 <template>
   <div>
-    <TopNavbar/>
     <Carousel/>
   <main class="text-justify">
     <div class="container mx-auto px-6 py-4 bg-slate-200 ">
@@ -63,7 +62,6 @@
       </div>
     </div>
   </main>
-  <BottomFooter/>
   </div>
 </template>
 

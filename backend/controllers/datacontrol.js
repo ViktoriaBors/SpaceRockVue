@@ -20,17 +20,17 @@ const data_index = async (req, res) => {
   let simulant = req.query.simulant
   let approved = req.query.approved
   let pending = req.query.pending
-  let all = req.query.all
   let length = req.query.getlength
   let pageIndex = req.query.page
   const data = []
+  console.log(req.query)
 
   let query;
   if (searchWord.length) {
     query["$text"] = { $search: searchText }
   }
 
-  let cursor;
+let cursor;
 if(analogue == "true"){
   switch("true"){
     case approved: cursor = await database
@@ -61,14 +61,14 @@ if(analogue == "true"){
 } else if ( pending == "true"){
   cursor = await database
       .find({ query, status: "pending" }, { name: 1, _id: 1, url: 1 }).sort({ name: 1 })
-} else if (all == "true"){
-  cursor = await database
-      .find({ query }, { name: 1, _id: 1, url: 1 }).sort({ name: 1 })
 } else {
   cursor = await database
   .find({ query }, { name: 1, _id: 1, url: 1 }).sort({ name: 1 })
 }
 
+await cursor.forEach(result => data.push(result))
+res.send(data)
+/*
   if (length) {
     await cursor.forEach(result => data.push(result))
     let lengthOfData = (data.length)
@@ -81,6 +81,7 @@ if(analogue == "true"){
     await cursor.forEach(result => data.push(result))
     res.send(data)
   }
+*/
 }
 
 const data_details = async (req, res) => {

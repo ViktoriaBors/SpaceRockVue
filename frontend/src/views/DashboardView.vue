@@ -1,6 +1,6 @@
 <template>
 <div>
-    <TopNavbar :user="user"/>
+    <DashboardNav :user="user"/>
       <main class="text-justify ">
         <div class="container mx-auto px-6 py-4 bg-slate-200">
             <p class="pt-2 text-lg text-center font-bold py-4">Here you can see your pending samples in the database.
@@ -39,18 +39,19 @@
     <Accordion/>
         </div>
       </main>
-      <BottomFooter/>
+
 
 </div>
   
 </template>
 
 <script setup>
-import TopNavbar from '../components/TopNavbar.vue'
-import HeroSection from '../components/HeroSection.vue'
+import DashboardNav from '../components/DashboardNav.vue'
 import BottomFooter from '../components/BottomFooter.vue'
 import Accordion from '../components/Accordion.vue'
+
 const user = "fetch data"
+
 let imgSource = "(img/pexels-mike-b-383559.jpg)"
 </script>
 

@@ -1,6 +1,5 @@
 <template>
 <div>
-<TopNavbar></TopNavbar>
 <HeroSection :imgSource="imgSource"></HeroSection>
   <main class="text-justify">
     <div class="container mx-auto px-6 py-4 bg-slate-200 ">
@@ -22,8 +21,6 @@
       </ul>
     </div>
   </main>
-<BottomFooter></BottomFooter>
-<Impressum></Impressum>
 </div>
 </template>
 
