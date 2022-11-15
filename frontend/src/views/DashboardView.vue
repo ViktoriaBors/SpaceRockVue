@@ -49,10 +49,34 @@
 import DashboardNav from '../components/DashboardNav.vue'
 import BottomFooter from '../components/BottomFooter.vue'
 import Accordion from '../components/Accordion.vue'
-
-const user = "fetch data"
-
+import { onMounted, ref } from '@vue/runtime-core'
 let imgSource = "(img/pexels-mike-b-383559.jpg)"
+
+const user = ref(null)
+
+onMounted (()=>{
+    fetch(`http://localhost:8081/user`,{
+    credentials: 'include'
+}).then(res => {
+    if(!res.ok){
+        throw new Error("error")
+    } else return res.json()
+}). then(data => {
+    console.log(data)
+})
+.catch(error =>{
+    console.log(error)
+    swal({
+        title: "Error",
+        text: "Access Denied",
+        icon: "error",
+    })
+    setTimeout(()=>{
+        window.open("http://localhost:8080/login", "_self")
+      }, 1000)
+})
+})
+
 </script>
 
 <style>

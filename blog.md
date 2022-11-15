@@ -1,6 +1,3 @@
-# Day 1-2
-View setups with tailwind and flowbite markups.
-
 Problems:
 - carousel working after refresh on the sample page, otherwise not working at all (no img or stops on current img)
 - Missing to implement pagination, sampleCard and sampleCardForm (remember PROPS)
@@ -24,6 +21,7 @@ Missing:
                   - search by name in backend fix
                   - pending or approved sample should be different color on Modal
 - DashboardNav and TopNavBar fix (TopNavbar should disappear or at least the login menu option)
-- DashboardView - check for session - name can appear in dashboardNav
+- DashboardView - check for session PROBLEM WITH RES.COOKIES - name can appear in dashboardNav
                                     - samples can be searched
                                     - search by name need fix here too
+

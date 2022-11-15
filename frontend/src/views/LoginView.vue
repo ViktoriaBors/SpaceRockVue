@@ -170,7 +170,7 @@
               >
                 Register
               </button>
-              <p id="requiredField" class="pt-1.5 px-1 text-xs text-red-700">
+              <p id="requiredField" :class='{ "font-bold" : isValidReg}' class="pt-1.5 px-1 text-xs text-red-700">
                 All fields are required
               </p>
             </form>
@@ -279,7 +279,7 @@
               >
                 Sign in
               </button>
-              <p class="requiredField pt-1.5 px-1 text-xs text-red-700">
+              <p  :class='{ "font-bold" : isValidSign}' class="pt-1.5 px-1 text-xs text-red-700">
                 All fields are required
               </p>
             </form>
@@ -298,12 +298,17 @@ import BottomFooter from "../components/BottomFooter.vue";
 
 let imgSource = "(img/pexels-pixabay-33153-2.jpg)";
 
+console.log(new Date(Date.now()+3600000))
+
 let firstName = ref("");
 let lastName = ref("");
 let emailReg = ref("");
 let passwordReg = ref("");
 let emailSign = ref("");
 let passwordSign = ref("");
+
+let isValidReg = ref(false)
+let isValidSign = ref(false)
 
 const register = (event) => {
   let nameIsValid = firstName.value !== "" && lastName.value !== "";
@@ -312,6 +317,9 @@ const register = (event) => {
   );
   let passwordIsValid = passwordReg.value !== "";
   let formIsValid = nameIsValid && emailIsValid && passwordIsValid;
+  if(!formIsValid){
+    isValidReg.value = true
+  }
   if (formIsValid) {
     let newUser = {
       firstName: firstName.value,
@@ -359,6 +367,9 @@ const login = (event) => {
   );
   let passwordIsValid = passwordSign.value !== "";
   let formIsValid = emailIsValid && passwordIsValid;
+  if(!formIsValid){
+    isValidSign.value = true
+  }
   if (formIsValid) {
     let user = {
       email: emailSign.value,

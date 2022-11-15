@@ -13,10 +13,6 @@ let db
 
 const app = express();
 const port = 8081;
-
-app.use(express.static("public"))
-app.use(express.static("views", {
-  extensions: ['html', 'htm']}))
   
 app.use(express.json())
 app.use(cookieParser());
