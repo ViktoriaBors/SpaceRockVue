@@ -55,10 +55,10 @@ const user_details = async (req, res) => {
           database.updateOne({email:req.body.email}, {$set: {session:sessionId, sessionExpiration:expiration, httpOnly: true}})
           res.cookie("session", sessionId, {expires:  expiration}) // session is valid for a day
           res.send(JSON.stringify("Login is successful"))
-      } else { // session is not expired
+      } else if (cursor.sessionExpiration > new Date(Date.now())){
+        // session is not expired
         console.log("session is not expired")
         res.send(JSON.stringify("Login is successful"))
-
       }
   } else {
       res.status(401)
@@ -72,6 +72,7 @@ const user_index = async (req, res)=>{
     const sessionId = req.cookies.session
     let cursor = await database.findOne({session: sessionId})
     if(!cursor || cursor.sessionExpiration < new Date(Date.now())){
+      database.updateOne({session: sessionId}, {$set: {session:null, sessionExpiration:null, httpOnly: true}})
         res.status(401)
         res.send(JSON.stringify('No session found'))
         return
@@ -87,9 +88,9 @@ const user_index = async (req, res)=>{
 const user_out = async (req, res)=>{
   console.log("logging out")
   const sessionId = req.cookies.session;
-  let cursorSession = await session.findOne({session: sessionId})
-  if (cursorSession) {
-    session.deleteOne({session: sessionId})
+  let cursor = await database.findOne({session: sessionId})
+  if (cursor) {
+    database.updateOne({session: sessionId}, {$set: {session:null, sessionExpiration:null, httpOnly: true}})
     res.clearCookie("session", sessionId)
     res.send("logged out")
 } else{

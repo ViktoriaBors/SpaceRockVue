@@ -56,6 +56,11 @@
       <div v-if="sampleData.length">
       <SampleCard :data="sampleData"/>
       </div>
+      <div v-if="noSample">
+        <div class="shadow-lg bg-white mt-2">
+          <h5 class="text-gray-900 text-md font-bold mb-2">No sample found</h5>
+        </div>  
+      </div>
       <Pagination :length="length"/>
   </div>
 </template>
@@ -76,13 +81,20 @@ let simulant = ref(false)
 let approved = ref(false)
 let pending = ref(false)
 let sampleData =ref([])
-console.log(sampleData)
+let noSample = ref(false)
+
 
 const getData = ()=>{
-  fetch(`http://localhost:8081/data?word=${searchWord.value.toUpperCase()}&analogue=${analogue.value.checked}&simulant=${simulant.value.checked}&approved=${approved.value.checked}&pending=${pending.value.checked}`
+  fetch(`http://localhost:8081/data?word=${searchWord.value}&analogue=${analogue.value.checked}&simulant=${simulant.value.checked}&approved=${approved.value.checked}&pending=${pending.value.checked}`
       ).then(res => res.json())
         .then(data => {
+          console.log(data)
           sampleData.value = data
+          if(data.length === 0){
+            noSample.value = true
+          } else {
+            noSample.value = false
+          }        
         })
 }
 
@@ -93,6 +105,7 @@ const resetSearch = ()=>{
   approved.value.checked = false
   pending.value.checked = false
   sampleData.value = []
+  noSample.value = false
 }
 
 let array = []

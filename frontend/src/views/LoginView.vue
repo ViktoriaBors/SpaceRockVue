@@ -292,6 +292,7 @@
 
 <script setup>
 import { ref } from "vue";
+import { useRouter, useRoute } from 'vue-router'
 import TopNavbar from "../components/TopNavbar.vue";
 import HeroSection from "../components/HeroSection.vue";
 import BottomFooter from "../components/BottomFooter.vue";
@@ -309,6 +310,10 @@ let passwordSign = ref("");
 
 let isValidReg = ref(false)
 let isValidSign = ref(false)
+
+// for redirect
+const router = useRouter()
+const route = useRoute()
 
 const register = (event) => {
   let nameIsValid = firstName.value !== "" && lastName.value !== "";
@@ -347,7 +352,7 @@ const register = (event) => {
           icon: "success",
         });
         setTimeout(() => {
-          window.open("http://localhost:8080/dashboard", "_self");
+          router.push({name : 'dashboard'});
         }, 2000);
       })
       .catch((error) => {
@@ -361,7 +366,7 @@ const register = (event) => {
   }
 };
 
-const login = (event) => {
+const login = () => {
   let emailIsValid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
     emailSign.value
   );
@@ -391,11 +396,11 @@ const login = (event) => {
       .then((data) => {
         swal({
           title: "Success",
-          text: "You are registered",
+          text: "You are now logged in",
           icon: "success",
         });
         setTimeout(() => {
-          window.open("http://localhost:8080/dashboard", "_self");
+          router.push({name : 'dashboard'});
         }, 2000);
       })
       .catch((error) => {

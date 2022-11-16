@@ -4,7 +4,7 @@ import datacontrol from "../controllers/datacontrol.js"
 
 
 const router = express.Router()
-const uploader = multer({dest: "./public/img/uploads"})
+const uploader = multer({dest: "./public/dist/img/uploads"})
 
 // get data from database - database.html
 router.get("", datacontrol.data_index)

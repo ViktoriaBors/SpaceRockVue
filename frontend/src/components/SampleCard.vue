@@ -14,8 +14,8 @@
 </div>
 <!--Modal-->
 <!-- Main modal -->
-<div id="oneModalData" v-if="isShow" class="h-full w-full mx-auto overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50">
-    <div class="relative w-full md:w-1/2 h-full mx-auto">
+<div id="oneModalData" v-if="isShow" style='background-color: rgba(240,240,240,0.8)' class="h-full w-full mx-auto overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50">
+    <div class="relative w-full sm:w-4/5 lg:w-1/2 h-full mx-auto">
         <!-- Modal content -->
         <div class="border-none shadow-lg relative flex flex-col pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
             <!-- Modal header -->
@@ -74,7 +74,6 @@
               <p class="modalDensity text-sm pb-2">{{oneSample.density}}</p>
               <p class="text-md font-bold py-1">Porosity (%)</p>
               <p class="modalPorosity text-sm pb-2">{{oneSample.porosity}}</p>
-
             </div>
             <!-- Modal footer -->
             <div class="flex items-center p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600">
@@ -96,7 +95,6 @@ let isShow = ref(false)
 const openModal = (event)=>{
   isShow.value = true
   oneSample.value = props.data.find(sample => sample._id == event.target.id)
-  console.log(oneSample.value)
 }
 
 

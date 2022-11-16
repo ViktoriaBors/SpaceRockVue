@@ -150,6 +150,9 @@ const data_form_get = async (req, res) => {
     cursor = await database.find({ query,status: "pending", uploadedBy : email }).sort({ name: 1 })
   }
 
+  await cursor.forEach(result => data.push(result))
+  res.send(data)
+/*
   if (length) {
     await cursor.forEach(result => data.push(result))
     let lengthOfData = (data.length)
@@ -162,7 +165,7 @@ const data_form_get = async (req, res) => {
     await cursor.forEach(result => data.push(result))
     res.send(data)
   }
-
+*/
 }
 
 const data_form_update = async (req, res) => {
