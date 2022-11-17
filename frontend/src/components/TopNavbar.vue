@@ -157,7 +157,14 @@
 <script setup>
 import { ref } from "vue";
 
-let isOpenNav = ref(false);
+let isOpenNav = ref(false)
+
+ if (window.innerWidth <= 768) {
+      isOpenNav.value = false;
+    } else {
+      isOpenNav.value = true;
+    }
+
 
 let width = window.innerWidth;
 window.addEventListener("resize", () => {
