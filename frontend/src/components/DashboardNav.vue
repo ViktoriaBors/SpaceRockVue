@@ -39,7 +39,7 @@ const router = useRouter()
 const route = useRoute()
 
 const logout = () => {
-    fetch(`http://localhost:8081/user/logout`,  {
+    fetch(`https://spacerockvue.onrender.com/user/logout`,  {
         credentials: "include",
     })
     .then(res => {

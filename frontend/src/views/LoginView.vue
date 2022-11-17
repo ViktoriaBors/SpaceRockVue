@@ -333,7 +333,7 @@ const register = (event) => {
       email: emailReg.value,
       password: passwordReg.value,
     };
-    fetch(`http://localhost:8081/user/register`, {
+    fetch(`https://spacerockvue.onrender.com//user/register`, {
       method: `Post`,
       headers: {
         "content-type": "application/json",
@@ -381,7 +381,7 @@ const login = () => {
       email: emailSign.value,
       password: passwordSign.value,
     };
-    fetch(`http://localhost:8081/user/login`, {
+    fetch(`https://spacerockvue.onrender.com//user/login`, {
       method: `Post`,
       headers: {
         "content-type": "application/json",

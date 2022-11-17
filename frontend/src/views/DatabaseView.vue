@@ -277,7 +277,7 @@ let noSample = ref(false);
 const getData = () => {
   console.log(searchWord.value);
   fetch(
-    `http://localhost:8081/data?analogue=${analogue.value.checked}&simulant=${simulant.value.checked}&approved=${approved.value.checked}&pending=${pending.value.checked}`
+    `https://spacerockvue.onrender.com/data?analogue=${analogue.value.checked}&simulant=${simulant.value.checked}&approved=${approved.value.checked}&pending=${pending.value.checked}`
   )
     .then((res) => res.json())
     .then((data) => {

@@ -176,7 +176,7 @@ const user = ref(null);
 const router = useRouter();
 const route = useRoute();
 // during "create" = setup - check user session
-fetch(`http://localhost:8081/user`, {
+fetch(`https://spacerockvue.onrender.com/user`, {
   credentials: "include",
 })
   .then((res) => {
@@ -212,7 +212,7 @@ const getData = () => {
   console.log("search");
   let email = user.value.email;
   fetch(
-    `http://localhost:8081/data/modify?alphabetic=${alphabetical.value.checked}&newest=${newest.value.checked}&email=${email}`
+    `https://spacerockvue.onrender.com/data/modify?alphabetic=${alphabetical.value.checked}&newest=${newest.value.checked}&email=${email}`
   )
     .then((res) => res.json())
     .then((data) => {

@@ -425,7 +425,7 @@ let porosity = ref(null);
 const deleteData = (event) => {
   let sampleid = event.target.id;
   console.log(sampleid)
-  fetch(`http://localhost:8081/data/${sampleid}`, {
+  fetch(`https://spacerockvue.onrender.com/data/${sampleid}`, {
     method: "delete",
   })
     .then((res) => {
@@ -526,7 +526,7 @@ const saveData = () => {
   };
   let sampleid = oneSample.value._id;
 
-  fetch(`http://localhost:8081/data/${sampleid}`, {
+  fetch(`https://spacerockvue.onrender.com/data/${sampleid}`, {
     method: "PUT",
     headers: {
       "content-type": "application/json",

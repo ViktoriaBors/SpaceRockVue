@@ -597,7 +597,7 @@ const addData = () => {
     status: "pending",
   };
   console.log(newSample);
-  fetch(`http://localhost:8081/data`, {
+  fetch(`https://spacerockvue.onrender.com/data`, {
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -636,7 +636,7 @@ const addDImg = () => {
   fileForm.append("sampleName", sampleName.value)
   fileForm.append("img", file)
   fileForm.append("email", email)
-  fetch(`http://localhost:8081/data/file`, {
+  fetch(`https://spacerockvue.onrender.com/data/file`, {
         method: 'POST',
         body: fileForm
     }).then(res => {
