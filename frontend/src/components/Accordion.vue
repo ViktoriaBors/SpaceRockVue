@@ -10,7 +10,19 @@
         <h2 id="newSample-heading">
           <button
             type="button"
-            class="flex items-center justify-between w-full p-5 font-medium text-left text-white bg-gray-700 border border-b-0 border-gray-200 rounded-t-xl hover:bg-gray-800"
+            class="
+              flex
+              items-center
+              justify-between
+              w-full
+              p-5
+              font-medium
+              text-left text-white
+              bg-gray-700
+              border border-b-0 border-gray-200
+              rounded-t-xl
+              hover:bg-gray-800
+            "
             data-accordion-target="#newSample-body"
             aria-expanded="false"
             aria-controls="newSample-body"
@@ -26,7 +38,7 @@
           <div
             class="block p-6 rounded-lg shadow-lg bg-white m-2 w-full lg:w-1/2"
           >
-            <form>
+            <form @submit.prevent="addData" id="newSample">
               <div class="form-group mb-1">
                 <label
                   for="materialName"
@@ -34,9 +46,26 @@
                   >Name of the material</label
                 >
                 <input
+                  v-model="name"
                   type="text"
                   required
-                  class="block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
+                  class="
+                    block
+                    w-full
+                    px-3
+                    py-1.5
+                    text-base
+                    font-normal
+                    text-gray-700
+                    bg-white bg-clip-padding
+                    border border-solid border-gray-300
+                    rounded
+                    m-0
+                    focus:text-gray-700
+                    focus:bg-white
+                    focus:border-indigo-600
+                    focus:outline-none
+                  "
                   aria-describedby="materialName"
                   placeholder="Sample name"
                 />
@@ -51,8 +80,25 @@
                   >Short Description</label
                 >
                 <textarea
+                  v-model="description"
                   required
-                  class="block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
+                  class="
+                    block
+                    w-full
+                    px-3
+                    py-1.5
+                    text-base
+                    font-normal
+                    text-gray-700
+                    bg-white bg-clip-padding
+                    border border-solid border-gray-300
+                    rounded
+                    m-0
+                    focus:text-gray-700
+                    focus:bg-white
+                    focus:border-indigo-600
+                    focus:outline-none
+                  "
                   rows="3"
                   aria-describedby="description"
                   placeholder="Provide short description"
@@ -68,8 +114,25 @@
                   >Mineral composition</label
                 >
                 <textarea
+                  v-model="minerals"
                   required
-                  class="block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
+                  class="
+                    block
+                    w-full
+                    px-3
+                    py-1.5
+                    text-base
+                    font-normal
+                    text-gray-700
+                    bg-white bg-clip-padding
+                    border border-solid border-gray-300
+                    rounded
+                    m-0
+                    focus:text-gray-700
+                    focus:bg-white
+                    focus:border-indigo-600
+                    focus:outline-none
+                  "
                   id="mineralsNew"
                   aria-describedby="minerals"
                 >
@@ -92,8 +155,24 @@
                     >SiO<sub>2</sub></label
                   >
                   <input
+                    v-model="SiO2"
                     type="number"
-                    class="inline px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
+                    class="
+                      inline
+                      px-3
+                      py-1.5
+                      text-base
+                      font-normal
+                      text-gray-700
+                      bg-white bg-clip-padding
+                      border border-solid border-gray-300
+                      rounded
+                      m-0
+                      focus:text-gray-700
+                      focus:bg-white
+                      focus:border-indigo-600
+                      focus:outline-none
+                    "
                     aria-describedby="siO"
                   />
                 </div>
@@ -104,8 +183,24 @@
                     >Al<sub>2</sub>O<sub>3</sub></label
                   >
                   <input
+                    v-model="Al2O3"
                     type="number"
-                    class="inline px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
+                    class="
+                      inline
+                      px-3
+                      py-1.5
+                      text-base
+                      font-normal
+                      text-gray-700
+                      bg-white bg-clip-padding
+                      border border-solid border-gray-300
+                      rounded
+                      m-0
+                      focus:text-gray-700
+                      focus:bg-white
+                      focus:border-indigo-600
+                      focus:outline-none
+                    "
                     aria-describedby="alO"
                   />
                 </div>
@@ -116,8 +211,24 @@
                     >MgO</label
                   >
                   <input
+                    v-model="MgO"
                     type="number"
-                    class="inline px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
+                    class="
+                      inline
+                      px-3
+                      py-1.5
+                      text-base
+                      font-normal
+                      text-gray-700
+                      bg-white bg-clip-padding
+                      border border-solid border-gray-300
+                      rounded
+                      m-0
+                      focus:text-gray-700
+                      focus:bg-white
+                      focus:border-indigo-600
+                      focus:outline-none
+                    "
                     aria-describedby="mgO"
                   />
                 </div>
@@ -128,8 +239,24 @@
                     >CaO</label
                   >
                   <input
+                    v-model="CaO"
                     type="number"
-                    class="inline px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
+                    class="
+                      inline
+                      px-3
+                      py-1.5
+                      text-base
+                      font-normal
+                      text-gray-700
+                      bg-white bg-clip-padding
+                      border border-solid border-gray-300
+                      rounded
+                      m-0
+                      focus:text-gray-700
+                      focus:bg-white
+                      focus:border-indigo-600
+                      focus:outline-none
+                    "
                     aria-describedby="caO"
                   />
                 </div>
@@ -140,8 +267,24 @@
                     >Na<sub>2</sub>O</label
                   >
                   <input
+                    v-model="Na2O3"
                     type="number"
-                    class="inline px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
+                    class="
+                      inline
+                      px-3
+                      py-1.5
+                      text-base
+                      font-normal
+                      text-gray-700
+                      bg-white bg-clip-padding
+                      border border-solid border-gray-300
+                      rounded
+                      m-0
+                      focus:text-gray-700
+                      focus:bg-white
+                      focus:border-indigo-600
+                      focus:outline-none
+                    "
                     aria-describedby="naO"
                   />
                 </div>
@@ -152,8 +295,24 @@
                     >Fe<sub>2</sub>O<sub>3</sub></label
                   >
                   <input
+                    v-model="Fe2O3"
                     type="number"
-                    class="inline px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
+                    class="
+                      inline
+                      px-3
+                      py-1.5
+                      text-base
+                      font-normal
+                      text-gray-700
+                      bg-white bg-clip-padding
+                      border border-solid border-gray-300
+                      rounded
+                      m-0
+                      focus:text-gray-700
+                      focus:bg-white
+                      focus:border-indigo-600
+                      focus:outline-none
+                    "
                     aria-describedby="feO"
                   />
                 </div>
@@ -165,8 +324,25 @@
                   >Density (kg/m<sub>3</sub>)</label
                 >
                 <input
+                  v-model="density"
                   type="text"
-                  class="block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
+                  class="
+                    block
+                    w-full
+                    px-3
+                    py-1.5
+                    text-base
+                    font-normal
+                    text-gray-700
+                    bg-white bg-clip-padding
+                    border border-solid border-gray-300
+                    rounded
+                    m-0
+                    focus:text-gray-700
+                    focus:bg-white
+                    focus:border-indigo-600
+                    focus:outline-none
+                  "
                   id="densityNew"
                   aria-describedby="density"
                   placeholder="Density"
@@ -179,15 +355,48 @@
                   >Porosity (%)</label
                 >
                 <input
+                  v-model="porosity"
                   type="number"
-                  class="l block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
+                  class="
+                    l
+                    block
+                    w-full
+                    px-3
+                    py-1.5
+                    text-base
+                    font-normal
+                    text-gray-700
+                    bg-white bg-clip-padding
+                    border border-solid border-gray-300
+                    rounded
+                    m-0
+                    focus:text-gray-700
+                    focus:bg-white
+                    focus:border-indigo-600
+                    focus:outline-none
+                  "
                   aria-describedby="porosity"
                   placeholder="Porosity"
                 />
               </div>
               <button
                 type="submit"
-                class="w-full inline-block px-6 py-2.5 bg-yellow-500 text-black font-bold text-xs leading-tight uppercase rounded shadow-md hover:bg-yellow-600 hover:shadow-lg active:bg-yellow-700 active:shadow-lg"
+                class="
+                  w-full
+                  inline-block
+                  px-6
+                  py-2.5
+                  bg-yellow-500
+                  text-black
+                  font-bold
+                  text-xs
+                  leading-tight
+                  uppercase
+                  rounded
+                  shadow-md
+                  hover:bg-yellow-600 hover:shadow-lg
+                  active:bg-yellow-700 active:shadow-lg
+                "
               >
                 Submit
               </button>
@@ -199,7 +408,19 @@
           <h2 class="mb-0" id="img-heading">
             <button
               type="button"
-              class="flex items-center justify-between w-full p-5 font-medium text-left text-white bg-gray-700 border border-b-0 border-gray-200 rounded-t-xl hover:bg-gray-800"
+              class="
+                flex
+                items-center
+                justify-between
+                w-full
+                p-5
+                font-medium
+                text-left text-white
+                bg-gray-700
+                border border-b-0 border-gray-200
+                rounded-t-xl
+                hover:bg-gray-800
+              "
               data-accordion-target="#img-body"
               aria-expanded="false"
               aria-controls="img-body"
@@ -216,9 +437,18 @@
               class="accordion-body py-4 px-5 flex justify-center items-center"
             >
               <div
-                class="block p-6 rounded-lg shadow-lg bg-white m-2 w-full lg:w-1/2"
+                class="
+                  block
+                  p-6
+                  rounded-lg
+                  shadow-lg
+                  bg-white
+                  m-2
+                  w-full
+                  lg:w-1/2
+                "
               >
-                <form id="submitImgForm">
+                <form @submit.prevent="addDImg" id="submitImgForm">
                   <div class="form-group mb-5">
                     <label
                       for="materialName"
@@ -228,7 +458,24 @@
                     <input
                       type="text"
                       required
-                      class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none"
+                      class="
+                        form-control
+                        block
+                        w-full
+                        px-3
+                        py-1.5
+                        text-base
+                        font-normal
+                        text-gray-700
+                        bg-white bg-clip-padding
+                        border border-solid border-gray-300
+                        rounded
+                        m-0
+                        focus:text-gray-700
+                        focus:bg-white
+                        focus:border-indigo-600
+                        focus:outline-none
+                      "
                       id="materialName"
                       aria-describedby="materialName"
                       placeholder="Sample name"
@@ -244,14 +491,48 @@
                       id="imgUpload"
                       accept="image/png, image/jpg, image/jpeg"
                       required
-                      class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                      class="
+                        form-control
+                        block
+                        w-full
+                        px-3
+                        py-1.5
+                        text-base
+                        font-normal
+                        text-gray-700
+                        bg-white bg-clip-padding
+                        border border-solid border-gray-300
+                        rounded
+                        transition
+                        ease-in-out
+                        m-0
+                        focus:text-gray-700
+                        focus:bg-white
+                        focus:border-blue-600
+                        focus:outline-none
+                      "
                       type="file"
                     />
                   </div>
                   <button
                     id="submitImgBtn"
-                    type="button"
-                    class="w-full inline-block px-6 py-2.5 bg-yellow-500 text-black font-bold text-xs leading-tight uppercase rounded shadow-md hover:bg-yellow-600 hover:shadow-lg active:bg-yellow-700 active:shadow-lg"
+                    type="submit"
+                    class="
+                      w-full
+                      inline-block
+                      px-6
+                      py-2.5
+                      bg-yellow-500
+                      text-black
+                      font-bold
+                      text-xs
+                      leading-tight
+                      uppercase
+                      rounded
+                      shadow-md
+                      hover:bg-yellow-600 hover:shadow-lg
+                      active:bg-yellow-700 active:shadow-lg
+                    "
                   >
                     Submit
                   </button>
@@ -268,6 +549,81 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+
+const props = defineProps(["user"]);
+
+// form values
+let name = ref(null);
+let description = ref(null);
+let minerals = ref(null);
+let SiO2 = ref("");
+let Al2O3 = ref("");
+let MgO = ref("");
+let CaO = ref("");
+let Na2O3 = ref("");
+let Fe2O3 = ref("");
+let density = ref("");
+let porosity = ref("");
+
+const addData = () => {
+  let newSample = {
+    name: name.value,
+    type: "simulant",
+    description: description.value,
+    minerals: minerals.value,
+    SiO2: SiO2.value == "" || isNaN(SiO2.value) ? "N/A" : SiO2.value,
+    Al2O3: Al2O3.value == "" || isNaN(Al2O3.value) ? "N/A" : Al2O3.value,
+    MgO: MgO.value == "" || isNaN(MgO.value) ? "N/A" : MgO.value,
+    CaO: CaO.value == "" || isNaN(CaO.value) ? "N/A" : CaO.value,
+    Na2O3: Na2O3.value == "" || isNaN(Na2O3.value) ? "N/A" : Na2O3.value,
+    Fe2O3: Fe2O3.value == "" || isNaN(Fe2O3.value) ? "N/A" : Fe2O3.value,
+    porosity:
+      porosity.value == "" || isNaN(porosity.value) ? "N/A" : porosity.value,
+    density:
+      density.value == "" || isNaN(density.value) ? "N/A" : density.value,
+    uploadedBy: props.user.email,
+    url: "../img/samples/noImg.png",
+    updatedLast: Date.now(),
+    status: "pending",
+  };
+  console.log(newSample);
+  fetch(`http://localhost:8081/data`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(newSample),
+  })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("error");
+      }
+      return res.text();
+    })
+    .then((data) => {
+      swal({
+        title: "Success",
+        text: "New sample is added",
+        icon: "success",
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+      swal({
+        title: "Error",
+        text: "Already existing sample name",
+        icon: "error",
+      });
+    });
+  document.querySelector("#newSample").reset()
+  console.log(minerals.value)
+};
+
+const addDImg = () => {
+  console.log("add Img");
+};
+</script>
 
 <style></style>

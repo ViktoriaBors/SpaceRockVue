@@ -146,14 +146,14 @@
         </form>
         <!--Already saved samples by user appears here - all forms plus pagination-->
         <div v-if="sampleData.length">
-          <SampleCardForm :data="sampleData" /> 
+              <SampleCardForm :sampleData="sampleData" :user="user" /> 
         </div>
          <div v-if="noSample">
           <div class="shadow-lg bg-white mt-2">
-            <h5 class="text-gray-900 text-md font-bold mb-2">No sample found</h5>
+            <h5 class="text-gray-900 text-md font-bold mb-2 p-2">No sample found</h5>
           </div>  
         </div>
-        <Accordion />
+        <Accordion :user="user" />
       </div>
     </main>
   </div>
@@ -183,7 +183,6 @@ fetch(`http://localhost:8081/user`, {
     } else return res.json();
   })
   .then((data) => {
-    console.log(data);
     user.value = data;
   })
   .catch((error) => {
@@ -196,6 +195,7 @@ fetch(`http://localhost:8081/user`, {
     setTimeout(() => {
       router.push({ name: "login" });
     }, 2000);
+    isSearchActive.value = true
   });
 
 // Get sample data - user specific
@@ -213,11 +213,13 @@ const getData = () => {
     .then(res => res.json())
     .then(data => {
       sampleData.value = data
+      console.log(sampleData.value)
       if(data.length === 0){
         noSample.value = true
       } else {
         noSample.value = false
       }
+      console.log(noSample.value)
     })
 }
 </script>
