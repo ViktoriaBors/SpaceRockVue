@@ -1,5 +1,5 @@
 import express from "express";
-import { MongoClient } from "mongodb";
+import { MongoClient, ServerApiVersion, ObjectId } from "mongodb";
 import datarouter from "./routes/dataRoutes.js"
 import userrouter from "./routes/userRoutes.js"
 import cookieParser from "cookie-parser";
@@ -10,7 +10,7 @@ import cors from "cors"
 import path from 'path';
 import {fileURLToPath} from 'url';
 
-const uri = process.env.MONGODB_URI 
+const uri =  "mongodb+srv://vbp:spacerockApp1@spacerock-db.zvbvmp3.mongodb.net/spacerock?retryWrites=true&w=majority"  || process.env.MONGODB_URI 
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 let db
 

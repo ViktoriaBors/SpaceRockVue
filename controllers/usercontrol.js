@@ -2,10 +2,9 @@
 // user_details - login
 // user_index check user has a session or not
 
-import { MongoClient, MongoNotConnectedError, ObjectId } from "mongodb";
 import { v4 as uuidv4 } from 'uuid';
 import bcrypt from "bcrypt"
-import { MongoClient, ObjectId, ServerApiVersion } from "mongodb";
+import { MongoClient, ObjectId, ServerApiVersion, MongoNotConnectedError } from "mongodb";
 
 const uri = process.env.MONGODB_URI ;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
