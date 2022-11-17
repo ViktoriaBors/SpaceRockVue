@@ -14,53 +14,46 @@ const database = client.db("spacerockproject").collection("samples")
 
 const data_index = async (req, res) => {
   console.log("get data")
-
-  let searchWord = req.query.word
   let analogue = req.query.analogue
   let simulant = req.query.simulant
   let approved = req.query.approved
   let pending = req.query.pending
-  let length = req.query.getlength
-  let pageIndex = req.query.page
   const data = []
   console.log(req.query)
-
-  let query;
-  if (searchWord.length) {
-    query["$text"] = { $search: searchText }
-  }
+   
+  let query
 
 let cursor;
 if(analogue == "true"){
   switch("true"){
     case approved: cursor = await database
-    .find({ query, type: "analogue", status: "approved" }, { name: 1, _id: 1, url: 1 }).sort({ name: 1 })
+    .find({ type: "analogue", status: "approved" }, { name: 1, _id: 1, url: 1 }).sort({ name: 1 })
     break;
     case pending: cursor = await database
-    .find({ query, type: "analogue", status: "pending" }, { name: 1, _id: 1, url: 1 }).sort({ name: 1 })
+    .find({type: "analogue", status: "pending" }, { name: 1, _id: 1, url: 1 }).sort({ name: 1 })
     break;
     default: cursor = await database
-    .find({ query, type: "analogue" })
+    .find({ type: "analogue" })
     break;
   }
 } else if ( simulant == "true"){
   switch("true"){
     case approved: cursor = await database
-    .find({ query, type: "simulant", status: "approved" }, { name: 1, _id: 1, url: 1 }).sort({ name: 1 })
+    .find({ type: "simulant", status: "approved" }, { name: 1, _id: 1, url: 1 }).sort({ name: 1 })
     break;
     case pending: cursor = await database
-    .find({ query, type: "simulant", status: "pending" }, { name: 1, _id: 1, url: 1 }).sort({ name: 1 })
+    .find({ type: "simulant", status: "pending" }, { name: 1, _id: 1, url: 1 }).sort({ name: 1 })
     break;
     default: cursor = await database
-    .find({ query, type: "simulant" })
+    .find({ type: "simulant" })
     break;
   }
 } else if (approved == "true"){
   cursor = await database
-      .find({ query, status: "approved" }, { name: 1, _id: 1, url: 1 }).sort({ name: 1 })
+      .find({ status: "approved" }, { name: 1, _id: 1, url: 1 }).sort({ name: 1 })
 } else if ( pending == "true"){
   cursor = await database
-      .find({ query, status: "pending" }, { name: 1, _id: 1, url: 1 }).sort({ name: 1 })
+      .find({ status: "pending" }, { name: 1, _id: 1, url: 1 }).sort({ name: 1 })
 } else {
   cursor = await database
   .find({ query }, { name: 1, _id: 1, url: 1 }).sort({ name: 1 })
@@ -68,20 +61,6 @@ if(analogue == "true"){
 
 await cursor.forEach(result => data.push(result))
 res.send(data)
-/*
-  if (length) {
-    await cursor.forEach(result => data.push(result))
-    let lengthOfData = (data.length)
-    res.send(JSON.stringify(lengthOfData))
-  }
-
-  if (pageIndex) {
-    await cursor.skip(pageIndex * 5)
-      .limit(5)
-    await cursor.forEach(result => data.push(result))
-    res.send(data)
-  }
-*/
 }
 
 const data_details = async (req, res) => {
@@ -126,18 +105,12 @@ const data_img = async (req,res) => {
 const data_form_get = async (req, res) => {
   console.log("req for see pending data")
   console.log(req.query)
-  let searchWord = req.query.word
   let alphabeticOrder = req.query.alphabetic;
   let newestFirst = req.query.newest
   let email = req.query.email
-  let length = req.query.getlength
-  let pageIndex = req.query.page
   const data = []
 
   let query;
-  if (searchWord.length) {
-    query["$text"] = { $search: searchText }
-  }
 
   let cursor;
 
@@ -153,20 +126,6 @@ const data_form_get = async (req, res) => {
 
   await cursor.forEach(result => data.push(result))
   res.send(data)
-/*
-  if (length) {
-    await cursor.forEach(result => data.push(result))
-    let lengthOfData = (data.length)
-    res.send(JSON.stringify(lengthOfData))
-  }
-  if (pageIndex) {
-    console.log("exist")
-    await cursor.skip(pageIndex * 3)
-      .limit(3)
-    await cursor.forEach(result => data.push(result))
-    res.send(data)
-  }
-*/
 }
 
 const data_form_update = async (req, res) => {
