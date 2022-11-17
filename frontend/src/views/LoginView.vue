@@ -381,7 +381,7 @@ const login = () => {
       email: emailSign.value,
       password: passwordSign.value,
     };
-    fetch(`https://spacerockvue.onrender.com//user/login`, {
+    fetch(`https://spacerockvue.onrender.com/user/login`, {
       method: `Post`,
       headers: {
         "content-type": "application/json",

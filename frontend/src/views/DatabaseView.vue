@@ -282,6 +282,7 @@ const getData = () => {
     .then((res) => res.json())
     .then((data) => {
       if (data.length === 0) {
+        sampleData.value = null
         noSample.value = true;
         return;
       } else {
@@ -313,13 +314,6 @@ const resetSearch = () => {
   noSample.value = false;
 };
 
-let array = [];
-for (let i = 0; i < 5; i++) {
-  array.push({ key: i });
-}
-//length of data for pagination instead of 5
-
-let length = array;
 </script>
 
 <style>
