@@ -5,10 +5,11 @@
 import { MongoClient, MongoNotConnectedError, ObjectId } from "mongodb";
 import { v4 as uuidv4 } from 'uuid';
 import bcrypt from "bcrypt"
+import { MongoClient, ObjectId, ServerApiVersion } from "mongodb";
 
-
-const client = new MongoClient("mongodb://localhost:27017");
-const database = client.db("spacerockproject").collection("users")
+const uri = process.env.MONGODB_URI ;
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+const database = client.db("spacerock").collection("users")
 
 const user_post = async (req,res)=>{
   console.log("new user")

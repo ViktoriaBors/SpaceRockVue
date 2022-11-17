@@ -1,7 +1,9 @@
 import { MongoClient, ObjectId } from "mongodb";
 import fs from "fs"
-const client = new MongoClient("mongodb://localhost:27017");
-const database = client.db("spacerockproject").collection("samples")
+
+const uri = process.env.MONGODB_URI ;
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+const database = client.db("spacerock").collection("samples")
 
 
 // data_index (all sample) 
