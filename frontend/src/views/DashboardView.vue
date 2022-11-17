@@ -221,6 +221,8 @@ const getData = () => {
       }
       console.log(noSample.value)
     })
+    alphabetical.value.checked = false
+    newest.value.checked = false
 }
 </script>
 

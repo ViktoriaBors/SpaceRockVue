@@ -58,10 +58,9 @@
       </div>
       <div v-if="noSample">
         <div class="shadow-lg bg-white mt-2">
-          <h5 class="text-gray-900 text-md font-bold mb-2">No sample found</h5>
+          <h5 class="text-gray-900 text-md font-bold mb-2 p-2">No sample found</h5>
         </div>  
       </div>
-      <Pagination :length="length"/>
   </div>
 </template>
 

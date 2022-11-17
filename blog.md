@@ -1,12 +1,5 @@
-Problems:
-- carousel working after refresh on the sample page, otherwise not working at all (no img or stops on current img)
-- Missing to implement pagination, sampleCard and sampleCardForm (remember PROPS)
-
 Remember!
 After fetch data ref.value = data (not just ref)
-
-Implementing modal
-- background drop - not implemented yet
 
 "Problems":
 - dashboradNav -  emit so topNavbar disappears later -> login/egister button emit event to App.vue - hide topnavbar there
@@ -16,14 +9,10 @@ Done:
 - Home, Sample Type, Research Facility, Login - 100% working as I wanted
 
 Missing:
-- Database Center - missing backdrop when modal is open
+- Database Center 
                   - pagination
-                  - search by name in backend fix
+
                   - pending or approved sample should be different color on Modal
-- DashboardNav and TopNavBar fix (TopNavbar should disappear or at least the login menu option)
-- DashboardView - check for session PROBLEM WITH RES.COOKIES - name can appear in dashboardNav
-                                    - samples can be searched
-                                    - search by name need fix here too
 
 
 Solution for cookie problem
@@ -34,4 +23,3 @@ Solution for cookie problem
 Glitch: writing route path straight to browser search is not working as no html file in public. - vue serves different routes but they cannot called
 f.e localhost:8081/dashboard - writing this to browser give error
 localhost 8081 - index.html served then all menu can be reached and after login/register dashboard too.
-

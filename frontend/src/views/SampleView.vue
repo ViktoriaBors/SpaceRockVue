@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Carousel/>
+    <HeroSection :imgSource="imgSource" />
   <main class="text-justify">
     <div class="container mx-auto px-6 py-4 bg-slate-200 ">
       <p class="pt-2 text-lg text-center font-bold py-4">Analogue and simulant samples</p>
@@ -67,8 +67,10 @@
 
 <script setup>
 import TopNavbar from '../components/TopNavbar.vue'
-import Carousel from '../components/Carousel.vue'
+import HeroSection from '../components/HeroSection.vue'
 import BottomFooter from '../components/BottomFooter.vue'
+
+let imgSource = "(img/pexels-mike-b-383559.jpg)"
 
 </script>
 

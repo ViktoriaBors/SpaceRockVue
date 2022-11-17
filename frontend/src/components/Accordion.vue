@@ -9,6 +9,7 @@
       <div>
         <h2 id="newSample-heading">
           <button
+          @click="isOpenNewSample = !isOpenNewSample"
             type="button"
             class="
               flex
@@ -35,7 +36,7 @@
           class="hidden flex flex-row justify-center items-center"
           aria-labelledby="Newsample-body"
         >
-          <div
+          <div v-if="isOpenNewSample"
             class="block p-6 rounded-lg shadow-lg bg-white m-2 w-full lg:w-1/2"
           >
             <form @submit.prevent="addData" id="newSample">
@@ -407,6 +408,7 @@
         <div>
           <h2 class="mb-0" id="img-heading">
             <button
+            @click="isOpenImg = !isOpenImg"
               type="button"
               class="
                 flex
@@ -433,8 +435,8 @@
             class="hidden text-center"
             aria-labelledby="img-heading"
           >
-            <div
-              class="accordion-body py-4 px-5 flex justify-center items-center"
+            <div v-if="isOpenImg"
+              class="py-4 px-5 flex justify-center items-center"
             >
               <div
                 class="
@@ -448,7 +450,7 @@
                   lg:w-1/2
                 "
               >
-                <form @submit.prevent="addDImg" id="submitImgForm">
+                <form @submit.prevent="addDImg" method="post" id="submitImgForm">
                   <div class="form-group mb-5">
                     <label
                       for="materialName"
@@ -456,6 +458,7 @@
                       >Name of the material</label
                     >
                     <input
+                      v-model="sampleName"
                       type="text"
                       required
                       class="
@@ -490,6 +493,7 @@
                     <input
                       id="imgUpload"
                       accept="image/png, image/jpg, image/jpeg"
+                      enctype="multipart/form-data"
                       required
                       class="
                         form-control
@@ -553,6 +557,8 @@
 import { ref } from "vue";
 
 const props = defineProps(["user"]);
+let isOpenNewSample = ref(false)
+let isOpenImg = ref(false)
 
 // form values
 let name = ref(null);
@@ -566,6 +572,8 @@ let Na2O3 = ref("");
 let Fe2O3 = ref("");
 let density = ref("");
 let porosity = ref("");
+
+let sampleName = ref(null) // for img upload
 
 const addData = () => {
   let newSample = {
@@ -622,7 +630,38 @@ const addData = () => {
 };
 
 const addDImg = () => {
-  console.log("add Img");
+  let file = document.querySelector("#imgUpload").files[0]
+  let email = props.user.email
+  let fileForm = new FormData()
+  fileForm.append("sampleName", sampleName.value)
+  fileForm.append("img", file)
+  fileForm.append("email", email)
+  fetch(`http://localhost:8081/data/file`, {
+        method: 'POST',
+        body: fileForm
+    }).then(res => {
+        if (!res.ok) {
+            throw new Error("error")
+        }
+        return res.text()
+    })
+        .then(data => {
+            swal({
+                title: "Success",
+                text: "New image is added",
+                icon: "success",
+            });
+        })
+        .catch(error => {
+            console.log(error)
+            swal({
+                title: "Error",
+                text: "No sample found",
+                icon: "error",
+            })
+        })
+  document.querySelector("#imgUpload").value = ""
+  sampleName.value=""
 };
 </script>
 

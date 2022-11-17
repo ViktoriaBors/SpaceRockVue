@@ -1,6 +1,6 @@
 <template>
 <div>
-<div class=" sm:grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5">
+<div class=" sm:grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5" style='background-color: rgba(255,255,255,0.5)'>
 <div v-for="sample in props.data" :key="sample._id" class="flex justify-center m-2">
     <div class="rounded-lg shadow-lg bg-white max-w-xs">
       <img class="rounded-t-lg" :src="sample.url" :alt="sample.name" />
