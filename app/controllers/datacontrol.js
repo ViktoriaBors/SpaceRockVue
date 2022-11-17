@@ -115,7 +115,8 @@ const data_img = async (req,res) => {
     fs.unlinkSync(req.file.path)
     res.send("Sample is not found")
   } else if(cursor) {
-    let newUrl = "." + req.file.path.slice(6,100)
+    console.log(req.file.path)
+    let newUrl = ".." + req.file.path.slice(11,100)
     console.log("add img to sample")
     database.updateOne({ name: req.body.sampleName }, { $set: {url: newUrl}})
     res.send("uploaded img")
