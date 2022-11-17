@@ -146,12 +146,14 @@
         </form>
         <!--Already saved samples by user appears here - all forms plus pagination-->
         <div v-if="sampleData.length">
-              <SampleCardForm :sampleData="sampleData" :user="user" /> 
+          <SampleCardForm :sampleData="sampleData" :user="user" />
         </div>
-         <div v-if="noSample">
+        <div v-if="noSample">
           <div class="shadow-lg bg-white mt-2">
-            <h5 class="text-gray-900 text-md font-bold mb-2 p-2">No sample found</h5>
-          </div>  
+            <h5 class="text-gray-900 text-md font-bold mb-2 p-2">
+              No sample found
+            </h5>
+          </div>
         </div>
         <Accordion :user="user" />
       </div>
@@ -165,14 +167,14 @@ import BottomFooter from "../components/BottomFooter.vue";
 import Accordion from "../components/Accordion.vue";
 import SampleCardForm from "../components/SampleCardForm.vue";
 import { onMounted, ref } from "vue";
-import { useRouter, useRoute } from 'vue-router'
+import { useRouter, useRoute } from "vue-router";
 let imgSource = "(img/pexels-mike-b-383559.jpg)";
 
 const user = ref(null);
 
 // for redirect
-const router = useRouter()
-const route = useRoute()
+const router = useRouter();
+const route = useRoute();
 // during "create" = setup - check user session
 fetch(`http://localhost:8081/user`, {
   credentials: "include",
@@ -195,35 +197,49 @@ fetch(`http://localhost:8081/user`, {
     setTimeout(() => {
       router.push({ name: "login" });
     }, 2000);
-    isSearchActive.value = true
+    isSearchActive.value = true;
   });
 
 // Get sample data - user specific
-let searchWord = ref("")
-let alphabetical = ref(false)
-let newest = ref(false)
+let searchWord = ref("");
+let alphabetical = ref(false);
+let newest = ref(false);
 
-let sampleData = ref([])
-let noSample = ref(false)
+let sampleData = ref([]);
+let noSample = ref(false);
 
 const getData = () => {
-  console.log("search")
-  let email = user.value.email
-  fetch(`http://localhost:8081/data/modify?word=${searchWord.value}&alphabetic=${alphabetical.value.checked}&newest=${newest.value.checked}&email=${email}`)
-    .then(res => res.json())
-    .then(data => {
-      sampleData.value = data
-      console.log(sampleData.value)
-      if(data.length === 0){
-        noSample.value = true
+  console.log("search");
+  let email = user.value.email;
+  fetch(
+    `http://localhost:8081/data/modify?alphabetic=${alphabetical.value.checked}&newest=${newest.value.checked}&email=${email}`
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.length === 0) {
+        noSample.value = true;
+        return;
       } else {
-        noSample.value = false
+        noSample.value = false;
+        if (searchWord.value) {
+          let sampleArray = [];
+          for (let i = 0; i < data.length; i++) {
+
+            if (
+              data[i].name.toLowerCase().match(searchWord.value.toLowerCase())
+            ) {
+              sampleArray.push(data[i]);
+            }
+            sampleData.value = sampleArray;
+          }
+        } else {
+          sampleData.value = data;
+        }
       }
-      console.log(noSample.value)
-    })
-    alphabetical.value.checked = false
-    newest.value.checked = false
-}
+    });
+  alphabetical.value.checked = false;
+  newest.value.checked = false;
+};
 </script>
 
 <style>

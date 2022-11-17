@@ -12,7 +12,6 @@
         shadow-lg
         navbar navbar-expand-sm
         text-lg
-        mt-32 
         ">
         <div class="container-fluid w-full flex flex-col items-center justify-center px-6">
             <p class="font-extrabold tracking-wider text-yellow-800"> SpaceRock</p>

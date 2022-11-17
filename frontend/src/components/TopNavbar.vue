@@ -1,6 +1,6 @@
-<template>  
-<div>
-<nav class="bg-slate-400 px-2 sm:px-4 py-2.5 fixed w-full z-20 top-0 left-0 z-50">
+<template>
+  <div>
+    <nav class="bg-slate-400 px-2 sm:px-4 py-2.5 fixed w-full z-20 top-0 left-0 z-50">
   <div class="container flex flex-wrap justify-between items-center mx-auto">
     <router-link :to= '{name:"home"}'
     class="font-extrabold tracking-wider text-yellow-800 cursor-pointer hover:text-yellow-700">SpaceRock</router-link>
@@ -34,11 +34,11 @@
   </div>
   </div>
 </nav>
-</div>
-
+  </div>
 </template>
 
 <script setup>
+
 
 </script>
 
