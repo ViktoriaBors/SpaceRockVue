@@ -33,7 +33,7 @@
         </h2>
         <div
           id="newSample-body"
-          class="hidden flex flex-row justify-center items-center"
+          class="flex flex-row justify-center items-center"
           aria-labelledby="Newsample-body"
         >
           <div v-if="isOpenNewSample"
@@ -432,7 +432,7 @@
           </h2>
           <div
             id="img-body"
-            class="hidden text-center"
+            class="text-center"
             aria-labelledby="img-heading"
           >
             <div v-if="isOpenImg"
