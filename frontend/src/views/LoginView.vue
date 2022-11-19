@@ -383,6 +383,7 @@ const login = () => {
     };
     fetch(`https://spacerockvue.onrender.com/user/login`, {
       method: `Post`,
+      credentials: "include",
       headers: {
         "content-type": "application/json",
       },

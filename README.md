@@ -36,4 +36,3 @@ To make a simple CRUD application where the user can add, modify and delete data
 https://spacerockvue.onrender.com
 
 For testing purpose use test@test.com for username with the password test on the login form. But PLEASE LOGOUT when you are done :pray:
-

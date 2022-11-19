@@ -37,7 +37,7 @@ const user_post = async (req,res)=>{
 }
 
 const user_details = async (req, res) => {
-  console.log("login")
+  console.log("login", req.cookies.session)
   let cursor = await database.findOne({ email: req.body.email })
   if(!cursor){
       res.status(401)
@@ -48,18 +48,22 @@ const user_details = async (req, res) => {
   console.log(new Date(Date.now()))
   // check hashed password matches
   if (bcrypt.compareSync(req.body.password, cursor.password)) {
-      if(cursor.sessionExpiration < new Date(Date.now()) || cursor.sessionExpiration == null || cursor.session == null){
-          console.log('session expired')
-          const sessionId = uuidv4();
-          const expiration = new Date(Date.now()+3600000)
-          database.updateOne({email:req.body.email}, {$set: {session:sessionId, sessionExpiration:expiration, httpOnly: true}})
-          res.cookie("session", sessionId, {expires:  expiration}) // session is valid for a day
-          res.send(JSON.stringify("Login is successful"))
-      } else if (cursor.sessionExpiration > new Date(Date.now())){
-        // session is not expired
-        console.log("session is not expired")
+    const sessionId = uuidv4();
+    const expiration = new Date(Date.now()+3600000)
+    if(!req.cookies.session){
+      console.log("no session found, sending cookies")
+      database.updateOne({email:req.body.email}, {$set: {session:sessionId, sessionExpiration:expiration, httpOnly: true}})
+      res.cookie("session", sessionId, {expires:  expiration}) // session is valid for a day
+      res.send(JSON.stringify("Login is successful"))
+    } else if(req.cookies.session && cursor.sessionExpiration == req.cookies.session.expires) {
+      console.log("session is not expired")
         res.send(JSON.stringify("Login is successful"))
-      }
+    }else if(req.cookies.session && cursor.sessionExpiration !== req.cookies.session.expires) {
+      console.log('session expired')
+      database.updateOne({email:req.body.email}, {$set: {session:sessionId, sessionExpiration:expiration, httpOnly: true}})
+      res.cookie("session", sessionId, {expires:  expiration}) // session is valid for a day
+      res.send(JSON.stringify("Login is successful"))
+    }
   } else {
       res.status(401)
       res.send(JSON.stringify("Authorization is denied"))
