@@ -55,10 +55,10 @@ const user_details = async (req, res) => {
       database.updateOne({email:req.body.email}, {$set: {session:sessionId, sessionExpiration:expiration, httpOnly: true}})
       res.cookie("session", sessionId, {expires:  expiration}) // session is valid for a day
       res.send(JSON.stringify("Login is successful"))
-    } else if(req.cookies.session && cursor.sessionExpiration == req.cookies.session.expires) {
+    } else if(req.cookies.session && cursor.session == req.cookies.session) {
       console.log("session is not expired")
         res.send(JSON.stringify("Login is successful"))
-    }else if(req.cookies.session && cursor.sessionExpiration !== req.cookies.session.expires) {
+    }else if(req.cookies.session && cursor.session !== req.cookies.session) {
       console.log('session expired')
       database.updateOne({email:req.body.email}, {$set: {session:sessionId, sessionExpiration:expiration, httpOnly: true}})
       res.cookie("session", sessionId, {expires:  expiration}) // session is valid for a day
