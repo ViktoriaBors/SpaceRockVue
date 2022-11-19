@@ -75,8 +75,8 @@ const user_index = async (req, res)=>{
   console.log('checking for session')
     const sessionId = req.cookies.session
     let cursor = await database.findOne({session: sessionId})
-    if(!cursor || cursor.sessionExpiration < new Date(Date.now())){
-      database.updateOne({session: sessionId}, {$set: {session:null, sessionExpiration:null, httpOnly: true}})
+    if(!cursor || !req.cookies.session || req.cookies.session !== cursor.session){
+      console.log("Access denied - no matching session")
         res.status(401)
         res.send(JSON.stringify('No session found'))
         return
